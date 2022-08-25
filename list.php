@@ -136,11 +136,24 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: black;
             background-color: #BBFFBB;
         }
+        .Open {
+            margin-right: 100px;
+            padding: 5px 30px 5px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            background-color: #00A600;
+            transition: 0.5s;
+        }
+        .Open:hover {
+            color: black;
+            background-color: #BBFFBB;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h3>ConfiguroWeb</h3>
+        <h3>ALMACEN</h3>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
@@ -153,7 +166,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 <th scope="col">Orden</th>
                 <th scope="col">ID:Producto</th>
                 <th scope="col">Nombre:Producto</th>
-                <th scope="col">Cantidades</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Fecha:Registro</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
@@ -182,6 +195,9 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         </table>
         <br>
         <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">Agregar Producto</a>
+        <a name="id" id="" class="Addlist" style="float:right" href="open.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
+                                Salida del Producto
+                            </a>
     </div>
     <?php
     mysqli_close($conn);

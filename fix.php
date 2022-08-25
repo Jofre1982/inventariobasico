@@ -142,7 +142,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 </head>
 <body>
     <div class="header">
-        <h3>ConfiguroWeb</h3>
+        <h3>ALMACEN</h3>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
@@ -156,7 +156,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 <th scope="col">Orden</th>
                 <th scope="col">ID:Producto</th>
                 <th scope="col">Nombre:Producto</th>
-                <th scope="col">Cantidades</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Fecha:Registro</th>
                 </tr>
             </thead>
