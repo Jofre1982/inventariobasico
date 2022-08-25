@@ -7,9 +7,11 @@ if ($_SESSION['username'] == null) {
     exit();
 }
 $username = $_SESSION['username'];
-$sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
-$query = mysqli_query($conn, $sql_fetch_todos);
-
+$sql_fetch_current_product = "SELECT * FROM product WHERE id = " . $_GET['id'];
+$query = mysqli_query($conn, $sql_fetch_current_product);
+$product = mysqli_fetch_array($query);
+//var_dump($product);
+//die();
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,6 +28,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-family: Arial, Helvetica, sans-serif;
             background-color: #fd7e1b;
         }
+
         .header {
             position: fixed;
             top: 0px;
@@ -40,10 +43,12 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             bottom: 0;
             background-color: #298dba;
         }
+
         .header p {
             margin-left: 20px;
             text-align: left;
         }
+
         .button-logout {
             position: relative;
             margin-top: -50px;
@@ -57,10 +62,12 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: white;
             transition: 0.5s;
         }
+
         .button-logout:hover {
             background-color: #D9ddd4;
             color: red;
         }
+
         .container {
             margin: 90px auto;
             margin-bottom: 50px;
@@ -99,16 +106,20 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .timeregis {
             text-align: center;
         }
-        .form-group{
+
+        .form-group {
             margin-left: 600px;
         }
-        [type=text]{
+
+        [type=text],
+        [type=number] {
             font-family: "Mitr", sans-serif;
             border-radius: 15px;
             border: transparent;
             padding: 7px 200px 7px 5px;
         }
-        .return{
+
+        .return {
             border-radius: 15px;
             background-color: #ffcc33;
             color: black;
@@ -118,11 +129,13 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-size: 20px;
             transition: 0.5s;
         }
-        .return:hover{
+
+        .return:hover {
             background-color: #fdb515;
             color: white;
         }
-        .modify{
+
+        .modify {
             border-radius: 15px;
             border: transparent;
             color: white;
@@ -134,61 +147,33 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             font-family: "Mitr", sans-serif;
             transition: 0.5s;
         }
-        .modify:hover{
+
+        .modify:hover {
             color: black;
             background-color: #BBFFBB;
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h3>ALMACEN</h3>
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Lista de Productos</h1>
+        <h1>Salida de Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
-    <div class="table-product">
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">Orden</th>
-                <th scope="col">ID:Producto</th>
-                <th scope="col">Nombre:Producto</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Fecha:Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                    <tr>
-                        <td scope="row"><?php echo $idpro ?></td>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['proname'] ?></td>
-                        <td><?php echo $row['amount'] ?></td>
-                        <td class="timeregis"><?php echo $row['time'] ?></td>
-                    </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
-        <br>
-    </div>
     <div class="openproduct">
-        <form method="POST" action="main/open.php">
-        <div class="form-group">
-                <label for="exampleInputEmail1">Nombre del Producto</label>
-                <br>
-                <input type="text" class="form-control" name="name" value="<?php echo $_GET['message']; ?>" required>
-            </div>
+        <form method="POST" action="main/outbound.php">
             <div class="form-group">
-                <label for="exampleInputPassword1">Cantidad</label>
+                <h1><?php echo $product['proname'] ?></h1>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Cantidad de Salida: </label>
                 <br>
-                <input type="text" value="<?php echo $_GET['amount'] ?>" class="form-control" name="value" required>
+                <input type="number" value="1" class="form-control" name="value" required>
                 <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
             </div>
             <br>
@@ -202,4 +187,5 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     mysqli_close($conn);
     ?>
 </body>
+
 </html>
