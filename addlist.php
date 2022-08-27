@@ -95,6 +95,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             background-color: #f2f2f2;
         }
 
+        .stock {
+            text-align: center;
+        }
+
         .timeregis {
             text-align: center;
         }
@@ -176,7 +180,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td scope="row"><?php echo $idpro ?></td>
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['proname'] ?></td>
-                        <td><?php echo $row['amount'] ?></td>
+                        <td class="stock"><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
                     </tr>
                 <?php
@@ -195,10 +199,12 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 <div class="form-group">
                     <label for="exampleInputPassword1">Cantidad</label>
                     <br>
-                    <input type="number" class="form-control" name="amount" required> </div> <br>
+                    <input type="number" class="form-control" name="amount" required> 
+                </div> 
+                    <br>
                 <div class="form-button">
                     <button type="submit" class="modify" style="float:right">Agregar Producto</button>
-                    <a name="" id="" class="return" href="list.php" role="button" style="float:left">Volver</a>
+                    <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
                 </div>
             </form>
         </div>

@@ -13,13 +13,13 @@
     $row = mysqli_fetch_assoc($query_delete,MYSQLI_ASSOC);
     if(!$row){
         echo "<script>alert('Eliminación de Producto Exitosa')</script>";        
-        header("Refresh: 0 , url = ../list.php");
+        header("Refresh: 0 , url = ../delete.php");
         exit();
 
     }
     else{
         echo "<script>alert('No se pudo eliminar producto')</script>";
-        header("Refresh: 0 , url = ../list.php");
+        header("Refresh: 0 , url = ../delete.php");
         exit();
 
     }

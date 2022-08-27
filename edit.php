@@ -17,7 +17,7 @@ $product = mysqli_fetch_array($query);
 <html lang="en">
 
 <head>
-    <title>Salida de Producto</title>
+    <title>Editar Producto</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -103,10 +103,6 @@ $product = mysqli_fetch_array($query);
             background-color: #f2f2f2;
         }
 
-        .stock {
-            text-align: center;
-        }
-
         .timeregis {
             text-align: center;
         }
@@ -165,63 +161,29 @@ $product = mysqli_fetch_array($query);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Salida de Productos</h1>
+        <h1>Editar Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
-    <div class="table-product">
-        <table>
-            <tr>
-                <th scope="col">Orden</th>
-                <th scope="col">ID:Producto</th>
-                <th scope="col">Nombre:Producto</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Check</th>
-            </tr>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                    <tr>
-                        <td scope="row"><?php echo $idpro ?></td>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['proname'] ?></td>
-                        <td class="stock"><?php echo $row['amount'] ?></td>
-
-                        <td class="inbound">
-                            <a name="inbound" id="" class="bfix" href="inbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
-                        <td class="outbound">
-                            <a name="outbound" id="" class="bfix" href="outbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
-                       
-                    </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
-        
-    </div>
     <div class="openproduct">
-        <form method="POST" action="main/outbound.php">
+        <form method="POST" action="main/fix.php">
             <div class="form-group">
                 <h1><?php echo $product['proname'] ?></h1>
             </div>
-
             <div class="form-group">
-                <label for="exampleInputPassword1">Cantidad de Salida: </label>
+                    <label for="exampleInputEmail1">Nuevo nombre del Producto</label>
+                    <br>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Nuevo valor: </label>
                 <br>
                 <input type="number" value="1" class="form-control" name="value" required>
                 <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
             </div>
             <br>
             <div class="form-button">
-                <button type="submit" class="modify" style="float:right">Salida</button>
-                <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
+                <button type="submit" class="modify" style="float:right">Editar</button>
+                <a name="" id="" class="return" href="fix.php" role="button" style="float:left">Volver</a>
             </div>
         </form>
     </div>

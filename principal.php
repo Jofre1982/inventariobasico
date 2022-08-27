@@ -15,7 +15,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <html lang="en">
 
 <head>
-    <title>Editar Productos</title>
+    <title>Principal</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -109,45 +109,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .timeregis {
             text-align: center;
         }
-        .form-group{
-            margin-left: 600px;
-        }
-        [type=text]{
-            font-family: "Mitr", sans-serif;
-            border-radius: 15px;
-            border: transparent;
-            padding: 7px 200px 7px 5px;
-        }
-        .return{
-        border-radius: 15px;
-            background-color: #ffcc33;
-            color: black;
-            text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
-            transition: 0.5s;
-        }
-        .return:hover{
-            background-color: #fdb515;
-            color: white;
-        }
-        .modify{
-            border-radius: 15px;
-            border: transparent;
-            color: white;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 50px 50px 100px;
-            font-size: 20px;
-            border-collapse: collapse;
-            background-color: #00A600;
-            font-family: "Mitr", sans-serif;
-            transition: 0.5s;
-        }
-        .modify:hover{
-            color: black;
-            background-color: #BBFFBB;
-        }
 
         .modify {
             text-align: center;
@@ -211,18 +172,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: red;
         }
 
-        .return {
-            border-radius: 15px;
-            background-color: #ffcc33;
-            color: black;
-            text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
-            transition: 0.5s;
-
-        }
-
         .Addlist {
             margin-right: 100px;
             padding: 5px 30px 5px 30px;
@@ -248,56 +197,27 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Editar Productos</h1>
-        <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
+        <h2>Has ingresado como <?php echo $str = strtoupper($username) ?></h2>
+        <h1>¿Qué acción deseas realizar?</h1>
     </div>
-    <div class="table-product">
-    <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                <th scope="col">Orden</th>
-                <th scope="col">ID:Producto</th>
-                <th scope="col">Nombre:Producto</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Fecha:Registro</th>
-                <th scope="col">Editar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $idpro = 1;
-                while ($row = mysqli_fetch_array($query)) { ?>
-                    <tr>
-                        <td scope="row"><?php echo $idpro ?></td>
-                        <td><?php echo $row['id'] ?></td>
-                        <td><?php echo $row['proname'] ?></td>
-                        <td class="stock"><?php echo $row['amount'] ?></td>
-                        <td class="timeregis"><?php echo $row['time'] ?></td>
-                        <td class="modify">
-                            <a name="edit" id="" class="bfix" href="edit.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        </td>
-                    </tr>
-                <?php
-                    $idpro++;
-                } ?>
-            </tbody>
-        </table>
+    <div class= "action">
+        
+        <a name="" id="" class="Addlist" style="float:right" href="list.php" role="button">LISTA DE PRODUCTOS</a>
         <br>
+        <a name="" id="" class="Addlist" style="float:right" href="inbound.php" role="button">INGRESO DE PRODUCTO</a>
+        <br>
+        <a name="" id="" class="Addlist" style="float:right" href="outbound.php" role="button">SALIDA DE PRODUCTO</a>       
+        <br>
+        <a name="" id="" class="Addlist" style="float:right" href="fix.php" role="button">EDITAR</a>
+        <br>
+        <a name="" id="" class="Addlist" style="float:right" href="delete.php" role="button">ELIMINAR</a>
+        <br>
+        <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">AGREGAR NUEVO PRODUCTO</a>
     </div>
-    <div class="fixproduct">
-        <form method="POST" action="main/fix.php">
-            
-            <br>
-            <div class="form-button">
-                
-                <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
-            </div>
-        </form>
-    </div>
+   
     <?php
     mysqli_close($conn);
     ?>
 </body>
+
 </html>

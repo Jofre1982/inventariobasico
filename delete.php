@@ -7,22 +7,21 @@ if ($_SESSION['username'] == null) {
     exit();
 }
 $username = $_SESSION['username'];
-$sql_fetch_current_product = "SELECT * FROM product WHERE id = " . $_GET['id'];
-$query = mysqli_query($conn, $sql_fetch_current_product);
-$product = mysqli_fetch_array($query);
-//var_dump($product);
-//die();
+$sql_fetch_todos = "SELECT * FROM product ORDER BY id ASC";
+$query = mysqli_query($conn, $sql_fetch_todos);
+
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Salida de Producto</title>
+    <title>Eliminar Productos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="dp.png">
+    <link rel="icon" href="faviconconfiguroweb.png">
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -106,21 +105,71 @@ $product = mysqli_fetch_array($query);
         .stock {
             text-align: center;
         }
-
+       
         .timeregis {
             text-align: center;
         }
 
-        .form-group {
-            margin-left: 600px;
+        .modify {
+            text-align: center;
+        }
+        
+        .inbound {
+            text-align: center;
         }
 
-        [type=text],
-        [type=number] {
-            font-family: "Mitr", sans-serif;
+        .inbound .bfix {
             border-radius: 15px;
-            border: transparent;
-            padding: 7px 200px 7px 5px;
+            background-color: green;
+            color: black;
+            text-decoration: none;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
+        }
+
+        .outbound {
+            text-align: center;
+        }
+
+        .outbound .bfix {
+            border-radius: 15px;
+            background-color: blue;
+            color: black;
+            text-decoration: none;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
+        } 
+        
+        .delete {
+            text-align: center;
+        }
+
+        .modify .bfix {
+            border-radius: 15px;
+            background-color: #ffcc33;
+            color: black;
+            text-decoration: none;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
+        }
+
+        .modify .bfix:hover {
+            background-color: #fdb515;
+            color: white;
+        }
+
+        .delete .bdelete {
+            border-radius: 15px;
+            background-color: #e60000;
+            text-decoration: none;
+            color: white;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
+        }
+
+        .delete .bdelete:hover {
+            background-color: #D9ddd4;
+            color: red;
         }
 
         .return {
@@ -132,30 +181,25 @@ $product = mysqli_fetch_array($query);
             margin: 0px 0px 50px 100px;
             font-size: 20px;
             transition: 0.5s;
+
         }
 
-        .return:hover {
-            background-color: #fdb515;
-            color: white;
-        }
-
-        .modify {
+        .Addlist {
+            margin-right: 100px;
+            padding: 5px 30px 5px 30px;
             border-radius: 15px;
-            border: transparent;
+            text-decoration: none;
             color: white;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 50px 50px 100px;
-            font-size: 20px;
-            border-collapse: collapse;
             background-color: #00A600;
-            font-family: "Mitr", sans-serif;
             transition: 0.5s;
         }
 
-        .modify:hover {
+        .Addlist:hover {
             color: black;
             background-color: #BBFFBB;
         }
+
+      
     </style>
 </head>
 
@@ -165,7 +209,7 @@ $product = mysqli_fetch_array($query);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Salida de Productos</h1>
+        <h1>Eliminar Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
     <div class="table-product">
@@ -175,7 +219,8 @@ $product = mysqli_fetch_array($query);
                 <th scope="col">ID:Producto</th>
                 <th scope="col">Nombre:Producto</th>
                 <th scope="col">Stock</th>
-                <th scope="col">Check</th>
+                <th scope="col">Fecha:Registro</th>
+                <th scope="col">Eliminar</th>
             </tr>
             <tbody>
                 <?php
@@ -186,45 +231,25 @@ $product = mysqli_fetch_array($query);
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['proname'] ?></td>
                         <td class="stock"><?php echo $row['amount'] ?></td>
-
-                        <td class="inbound">
-                            <a name="inbound" id="" class="bfix" href="inbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
-                        <td class="outbound">
-                            <a name="outbound" id="" class="bfix" href="outbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
+                        <td class="timeregis"><?php echo $row['time'] ?></td>
                        
+                        <td class="delete">
+                            <a name="id" id="" class="bdelete" href="main/delete.php?id=<?php echo $row['id'] ?>" role="button">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
                     </tr>
                 <?php
                     $idpro++;
                 } ?>
             </tbody>
         </table>
-        
-    </div>
-    <div class="openproduct">
-        <form method="POST" action="main/outbound.php">
-            <div class="form-group">
-                <h1><?php echo $product['proname'] ?></h1>
-            </div>
+        <br>
+        <div class="form-button">
+            <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
+        </div>
+    </div>    
 
-            <div class="form-group">
-                <label for="exampleInputPassword1">Cantidad de Salida: </label>
-                <br>
-                <input type="number" value="1" class="form-control" name="value" required>
-                <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
-            </div>
-            <br>
-            <div class="form-button">
-                <button type="submit" class="modify" style="float:right">Salida</button>
-                <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
-            </div>
-        </form>
-    </div>
     <?php
     mysqli_close($conn);
     ?>
