@@ -102,6 +102,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             background-color: #f2f2f2;
         }
 
+        .stock {
+            text-align: center;
+        }
+       
         .timeregis {
             text-align: center;
         }
@@ -109,22 +113,35 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .modify {
             text-align: center;
         }
-
-        .outbound {
+        
+        .inbound {
             text-align: center;
         }
 
-        .delete {
-            text-align: center;
-        }
-
-        .outbound .bfix {
+        .inbound .bfix {
             border-radius: 15px;
             background-color: green;
             color: black;
             text-decoration: none;
             padding: 4px 20px 4px 20px;
             transition: 0.5s;
+        }
+
+        .outbound {
+            text-align: center;
+        }
+
+        .outbound .bfix {
+            border-radius: 15px;
+            background-color: blue;
+            color: black;
+            text-decoration: none;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
+        } 
+        
+        .delete {
+            text-align: center;
         }
 
         .modify .bfix {
@@ -170,20 +187,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             background-color: #BBFFBB;
         }
 
-        .Open {
-            margin-right: 100px;
-            padding: 5px 30px 5px 30px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            background-color: #00A600;
-            transition: 0.5s;
-        }
-
-        .Open:hover {
-            color: black;
-            background-color: #BBFFBB;
-        }
+      
     </style>
 </head>
 
@@ -204,9 +208,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 <th scope="col">Nombre:Producto</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Fecha:Registro</th>
-                <th scope="col">Salida</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+                
             </tr>
             <tbody>
                 <?php
@@ -216,8 +218,13 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td scope="row"><?php echo $idpro ?></td>
                         <td><?php echo $row['id'] ?></td>
                         <td><?php echo $row['proname'] ?></td>
-                        <td><?php echo $row['amount'] ?></td>
+                        <td class="stock"><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
+                        <td class="inbound">
+                            <a name="inbound" id="" class="bfix" href="inbound.php?id=<?php echo $row['id'] ?>" role="button">
+                                <i class="fa fa-download"></i>
+                            </a>
+                        </td>
                         <td class="outbound">
                             <a name="outbound" id="" class="bfix" href="outbound.php?id=<?php echo $row['id'] ?>" role="button">
                                 <i class="fa fa-download"></i>
@@ -241,9 +248,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         </table>
         <br>
         <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">Agregar Producto</a>
-        <a name="id" id="" class="Addlist" style="float:right" href="open.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
-            Salida del Producto
-        </a>
+        
     </div>
     <?php
     mysqli_close($conn);
