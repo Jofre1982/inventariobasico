@@ -105,7 +105,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .stock {
             text-align: center;
         }
-       
+
         .timeregis {
             text-align: center;
         }
@@ -113,7 +113,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .modify {
             text-align: center;
         }
-        
+
         .inbound {
             text-align: center;
         }
@@ -138,8 +138,8 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             text-decoration: none;
             padding: 4px 20px 4px 20px;
             transition: 0.5s;
-        } 
-        
+        }
+
         .delete {
             text-align: center;
         }
@@ -187,7 +187,27 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             background-color: #BBFFBB;
         }
 
-      
+        .menu-group {
+            width: 100%;
+            text-align: center;
+            display: flex;
+        }
+
+        .menu-link {
+            width: 16%;
+            background-color: #009500;
+            padding: 7px;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 6px;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .menu-link:hover {
+            color: #000fff;
+            font-weight: bold;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -200,21 +220,20 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         <h2>Has ingresado como <?php echo $str = strtoupper($username) ?></h2>
         <h1>¿Qué acción deseas realizar?</h1>
     </div>
-    <div class= "action">
+    <div class="menu-group">
+        <a name="" id="" class="menu-link" href="list.php" role="button">LISTA DE PRODUCTOS</a>
         
-        <a name="" id="" class="Addlist" style="float:right" href="list.php" role="button">LISTA DE PRODUCTOS</a>
-        <br>
-        <a name="" id="" class="Addlist" style="float:right" href="inbound.php" role="button">INGRESO DE PRODUCTO</a>
-        <br>
-        <a name="" id="" class="Addlist" style="float:right" href="outbound.php" role="button">SALIDA DE PRODUCTO</a>       
-        <br>
-        <a name="" id="" class="Addlist" style="float:right" href="fix.php" role="button">EDITAR</a>
-        <br>
-        <a name="" id="" class="Addlist" style="float:right" href="delete.php" role="button">ELIMINAR</a>
-        <br>
-        <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">AGREGAR NUEVO PRODUCTO</a>
+        <a name="" id="" class="menu-link" href="inbound.php" role="button">INGRESO DE PRODUCTO</a>
+        
+        <a name="" id="" class="menu-link" href="outbound.php" role="button">SALIDA DE PRODUCTO</a>
+        
+        <a name="" id="" class="menu-link" href="fix.php" role="button">EDITAR</a>
+        
+        <a name="" id="" class="menu-link" href="delete.php" role="button">ELIMINAR</a>
+        
+        <a name="" id="" class="menu-link" href="addlist.php" role="button">MUEVO PRODUCTO</a>
     </div>
-   
+
     <?php
     mysqli_close($conn);
     ?>
