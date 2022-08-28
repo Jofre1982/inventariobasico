@@ -186,6 +186,17 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: black;
             background-color: #BBFFBB;
         }
+        .return {
+            border-radius: 15px;
+            background-color: #ffcc33;
+            color: black;
+            text-decoration: none;
+            padding: 4px 40px 4px 40px;
+            margin: 0px 0px 50px 100px;
+            font-size: 20px;
+            transition: 0.5s;
+
+        }
 
       
     </style>
@@ -220,26 +231,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td><?php echo $row['proname'] ?></td>
                         <td class="stock"><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
-                        <td class="inbound">
-                            <a name="inbound" id="" class="bfix" href="inbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
-                        <td class="outbound">
-                            <a name="outbound" id="" class="bfix" href="outbound.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-download"></i>
-                            </a>
-                        </td>
-                        <td class="modify">
-                            <a name="edit" id="" class="bfix" href="fix.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
-                                <i class="fa fa-pencil"></i>
-                            </a>
-                        </td>
-                        <td class="delete">
-                            <a name="id" id="" class="bdelete" href="main/delete.php?id=<?php echo $row['id'] ?>" role="button">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </td>
+                        
                     </tr>
                 <?php
                     $idpro++;
@@ -247,8 +239,10 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             </tbody>
         </table>
         <br>
-        <a name="" id="" class="Addlist" style="float:right" href="addlist.php" role="button">Agregar Producto</a>
-        
+        <div class="form-button">
+                
+                <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
+            </div>
     </div>
     <?php
     mysqli_close($conn);

@@ -15,7 +15,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
 <html lang="en">
 
 <head>
-    <title>Editar Productos</title>
+    <title>Ingreso de Productos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -248,7 +248,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Editar Productos</h1>
+        <h1>Ingreso de Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
     <div class="table-product">
@@ -260,6 +260,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 <th scope="col">Nombre:Producto</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Fecha:Registro</th>
+                <th scope="col">Remision</th>
                 <th scope="col">Ingreso</th>
                 </tr>
             </thead>
@@ -273,6 +274,11 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td><?php echo $row['proname'] ?></td>
                         <td class="stock"><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
+                        <td class="remision">
+                            <a href="ingreso.php?id=<?php echo $row['id'] ?>"role="button">
+                                <i class="text"></i>
+                            </a>
+                        </td>
                         <td class="inbound">
                             <a name="inbound" id="" class="bfix" href="ingreso.php?id=<?php echo $row['id'] ?>" role="button">
                                 <i class="fa fa-download"></i>
@@ -294,6 +300,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                 
                 <a name="" id="" class="return" href="principal.php" role="button" style="float:left">Volver</a>
             </div>
+            
         </form>
     </div>
     <?php

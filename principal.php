@@ -186,7 +186,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: black;
             background-color: #BBFFBB;
         }
-
       
     </style>
 </head>
