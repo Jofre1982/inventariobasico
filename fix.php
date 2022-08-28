@@ -23,7 +23,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
     <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        body {
+               body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #fd7e1b;
         }
@@ -109,48 +109,17 @@ $query = mysqli_query($conn, $sql_fetch_todos);
         .timeregis {
             text-align: center;
         }
-        .form-group{
-            margin-left: 600px;
-        }
-        [type=text]{
-            font-family: "Mitr", sans-serif;
-            border-radius: 15px;
-            border: transparent;
-            padding: 7px 200px 7px 5px;
-        }
-        .return{
-        border-radius: 15px;
-            background-color: #ffcc33;
-            color: black;
-            text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
-            transition: 0.5s;
-        }
-        .return:hover{
-            background-color: #fdb515;
-            color: white;
-        }
-        .modify{
-            border-radius: 15px;
-            border: transparent;
-            color: white;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 50px 50px 100px;
-            font-size: 20px;
-            border-collapse: collapse;
-            background-color: #00A600;
-            font-family: "Mitr", sans-serif;
-            transition: 0.5s;
-        }
-        .modify:hover{
-            color: black;
-            background-color: #BBFFBB;
-        }
 
         .modify {
             text-align: center;
+        }
+       .fix .bfix {
+            border-radius: 15px;
+            background-color: blue;
+            color: black;
+            text-decoration: none;
+            padding: 4px 20px 4px 20px;
+            transition: 0.5s;
         }
         
         .inbound {
@@ -211,18 +180,6 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: red;
         }
 
-        .return {
-            border-radius: 15px;
-            background-color: #ffcc33;
-            color: black;
-            text-decoration: none;
-            padding: 4px 40px 4px 40px;
-            margin: 0px 0px 50px 100px;
-            font-size: 20px;
-            transition: 0.5s;
-
-        }
-
         .Addlist {
             margin-right: 100px;
             padding: 5px 30px 5px 30px;
@@ -237,6 +194,19 @@ $query = mysqli_query($conn, $sql_fetch_todos);
             color: black;
             background-color: #BBFFBB;
         }
+
+               .return {
+            border-radius: 15px;
+            background-color: #ffcc33;
+            color: black;
+            text-decoration: none;
+            padding: 4px 40px 4px 40px;
+            margin: 0px 0px 50px 100px;
+            font-size: 20px;
+            transition: 0.5s;
+
+        }
+
 
       
     </style>
@@ -274,7 +244,7 @@ $query = mysqli_query($conn, $sql_fetch_todos);
                         <td class="stock"><?php echo $row['amount'] ?></td>
                         <td class="timeregis"><?php echo $row['time'] ?></td>
                         <td class="modify">
-                            <a name="edit" id="" class="bfix" href="edit.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
+                            <a name="fix" id="" class="bfix" href="edit.php?id=<?php echo $row['id'] ?>&message=<?php echo $row['proname'] ?>&amount=<?php echo $row['amount']; ?> " role="button">
                                 <i class="fa fa-pencil"></i>
                             </a>
                         </td>

@@ -17,7 +17,7 @@ $product = mysqli_fetch_array($query);
 <html lang="en">
 
 <head>
-    <title>Editar Producto</title>
+    <title>Ingreso Producto</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -161,7 +161,7 @@ $product = mysqli_fetch_array($query);
         <a name="" id="" class="button-logout" href="logout.php" role="button">Cerrar Sesión</a>
     </div>
     <div class="container">
-        <h1>Editar Productos</h1>
+        <h1>Ingreso de Productos</h1>
         <h2>Has accedido como <?php echo $str = strtoupper($username) ?></h2>
     </div>
     <div class="openproduct">
@@ -169,9 +169,15 @@ $product = mysqli_fetch_array($query);
             <div class="form-group">
                 <h1><?php echo $product['proname'] ?></h1>
             </div>
-            
             <div class="form-group">
                 <label for="exampleInputPassword1">Nuevo valor: </label>
+                <br>
+                <input type="number" value="1" class="form-control" name="value" required>
+                <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputPassword1">Numero de Remision: </label>
                 <br>
                 <input type="number" value="1" class="form-control" name="value" required>
                 <input type="hidden" value="<?php echo $_GET['id'] ?>" name="id" />
